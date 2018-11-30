@@ -3,23 +3,35 @@
 echo "Hello World!"
 File1=$1
 File1="$File1/"
-File2=$2
-File2="$File2/"
+cnt=0
+recursion(){
 for d in */; do
-
-	if [[ $d = $File1 ]]
-    then
-      cd ./$d
-      for e in */; do
-          if [[ $e = $File2 ]]
-          then
-
-             
-             cd ./$e
-          fi
-      done
-       
-    fi
+  cnt=$((cnt+1))
 
 done
-exec bash
+if [[ $cnt -eq 1 ]]
+then
+  echo "1"
+  return
+fi
+if [[ $cnt -gt 1 ]]
+then
+for d in */; do
+
+	  if [[ $d != "*/" ]]
+	  then
+	  echo $d
+      cd ./$d 
+      
+      if [[ $d == $File1 ]]
+      then
+        exec bash
+      fi
+      recursion
+      cd -
+  fi
+done
+fi
+
+}
+recursion
