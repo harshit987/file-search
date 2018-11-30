@@ -14,7 +14,7 @@ for d in */; do
           if [[ $e = $File2 ]]
           then
 
-             echo "awesome"
+             
              cd ./$e
           fi
       done
