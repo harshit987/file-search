@@ -13,7 +13,8 @@ for d in */; do
       for e in */; do
           if [[ $e = $File2 ]]
           then
-             
+
+             echo "awesome"
              cd ./$e
           fi
       done
