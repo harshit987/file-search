@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo "Hello World!"
 cwd=$(pwd)
 cnt=0
 recursion() {
@@ -11,16 +10,18 @@ for d in $1/*; do
 done
 if [[ $cnt -eq 1 ]]
 	then
-	echo $cnt
 	return 
 fi
+
+if [[ $3 == "-d" ]]
+	then
 IFS='/' read -ra arr <<< "$1"
 size=${#arr[@]}
 check=${arr[$(($size-1))]}
-echo $check $2
 if [[ $check == $2 ]]
 	then
 	exec bash
+fi
 fi
 if [[ $cnt -ne 1 ]]
 	then
@@ -28,12 +29,31 @@ if [[ $cnt -ne 1 ]]
 	for d in $1/*; do
         if [[ $d != $1 ]]
         	then
-        	cd $d
-        	recursion $d $2
-        	cd $1
+    
+        if [[ $3 == "-f" ]]
+	    then
+        
+        IFS='/' read -ra arr <<< "$d"
+        size=${#arr[@]}
+        check=${arr[$(($size-1))]}
+        
+        if [[ $check == $2 ]] 
+	       then
+	        subl $d
+	        exec bash
+        fi
+        
+        fi
+
+
+        echo $d	
+        cd $d
+        recursion $d $2 $3
+        cd $1
+        
         fi
 	done
 fi
 fi
 }
-recursion $cwd $1
+recursion $cwd $2 $1 
