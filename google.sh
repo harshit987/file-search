@@ -1,37 +1,39 @@
 #!/bin/bash
 
 echo "Hello World!"
-File1=$1
-File1="$File1/"
+cwd=$(pwd)
 cnt=0
-recursion(){
-for d in */; do
-  cnt=$((cnt+1))
-
+recursion() {
+if [[ -d $1 ]]
+	then
+for d in $1/*; do
+  cnt=$((cnt+1)) 
 done
 if [[ $cnt -eq 1 ]]
-then
-  echo "1"
-  return
+	then
+	echo $cnt
+	return 
 fi
-if [[ $cnt -gt 1 ]]
-then
-for d in */; do
-
-	  if [[ $d != "*/" ]]
-	  then
-	  echo $d
-      cd ./$d 
-      
-      if [[ $d == $File1 ]]
-      then
-        exec bash
-      fi
-      recursion
-      cd -
-  fi
-done
+IFS='/' read -ra arr <<< "$1"
+size=${#arr[@]}
+check=${arr[$(($size-1))]}
+echo $check $2
+if [[ $check == $2 ]]
+	then
+	exec bash
 fi
+if [[ $cnt -ne 1 ]]
+	then
 
+	for d in $1/*; do
+        if [[ $d != $1 ]]
+        	then
+        	cd $d
+        	recursion $d $2
+        	cd $1
+        fi
+	done
+fi
+fi
 }
-recursion
+recursion $cwd $1
