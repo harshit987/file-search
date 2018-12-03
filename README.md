@@ -9,5 +9,9 @@ Similary to navigate to the folder named "<b>demo</b>" , you need to type the fo
 
 Language used - <b> BASH </b>
 
+For installation - 
+download it and type <b>npm install -g</b>
+For permission -
+type <b> chmod +x google.sh</b>
 
-
+Now you are ready to search any file/folder in terminal.
