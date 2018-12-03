@@ -7,11 +7,11 @@ For eg. -  to search and open <b>demo.txt</b> in sublime editor, you need to typ
 Similary to navigate to the folder named "<b>demo</b>" , you need to type the following command <br>
 <b>google -d demo </b> 
 
-Language used - <b> BASH </b>
+Language used - <b> BASH </b><br>
 
-For installation - 
-download it and type <b>npm install -g</b>
-For permission -
-type <b> chmod +x google.sh</b>
+For installation - <br>
+download it and type <b>npm install -g</b><br>
+For permission -<br>
+type <b> chmod +x google.sh</b><br>
 
 Now you are ready to search any file/folder in terminal.
